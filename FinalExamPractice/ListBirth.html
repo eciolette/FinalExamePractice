@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <!-- calling the web api using AJAX-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Populate the "All" list for the Flintstones
+            $.getJSON('https://localhost:44361/API/VALUES/ListStudents')
+                .success(
+                    function (data) {
+                        // If successful, 'data' contains our Customers
+                        $.each(data, function (key, val) {
+                            var displayValue = val.BirthDate + "-" + val.FirstName + "-" + val.LastName + "-" + val.EmailAddress + "-" + val.Gender;
+                            $('<li/>', { text: displayValue }).appendTo($('#results'));
+                        });
+                    });
+        });
+
+    </script>
+
+    <ul id="results">
+    </ul>
+
+</body>
+</html>

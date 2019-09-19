@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <!-- calling the web api using AJAX-->
+    <script type="text/javascript">
+
+        function find() {
+            $.getJSON('https://localhost:44361/API/VALUES/PostNewStudent?FirstName=' + $('#txtFirstName').val() + '&LastName=' + $('#txtLastName').val() + '&EmailAddress=' + $('#txtEmailAddress').val() + '&BirthDate=' + $('#txtBirthDate').val() + '&Gender=' + $('#txtGender').val())
+                .success(
+                    function (data) {
+                        $('#results').val(data);
+                    });
+
+        }
+    </script>
+    <p>
+        FirstName: <input type="text" id="txtFirstName" />
+        <br />
+        <br />
+        LastName: <input type="text" id="txtLastName" />
+        <br />
+        <br />
+        EmailAddress: <input type="text" id="txtEmailAddress" />
+        <br />
+        <br />
+        BirthDate: <input type="text" id="txtBirthDate" />
+        <br />
+        <br />
+        Gender: <input type="text" id="txtGender" />
+        <br />
+        <br />
+        <input type="button" value="Insert" onclick="find();" />
+
+    </p>
+    <ul id="results">
+    </ul>
+
+</body>
+</html>

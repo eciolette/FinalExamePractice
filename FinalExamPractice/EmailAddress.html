@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <!-- calling the web api using AJAX-->
+    <script type="text/javascript">
+
+        function find() {
+            $.getJSON('https://localhost:44361/API/VALUES/ListStudentsEmail?email=' + $('#EmailAddress').val())
+                .success(
+                    function (data) {
+                        $('#results').empty();
+                        $.each(data, function (key, val) {
+                            var displayValue = val.EmailAddress + "-" + val.FirstName + "-" + val.LastName + "-" + val.BirthDate + "-" + val.Gender;
+                            $('<li/>', { text: displayValue }).appendTo($('#results'));
+                        });
+                    });
+        }
+    </script>
+    <p>
+        Email Address: <input type="text" id="EmailAddress" />
+        <br />
+        <input type="button" value="Search" onclick="find();" />
+
+    </p>
+    <ul id="results">
+    </ul>
+
+</body>
+</html>
